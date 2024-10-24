@@ -1,11 +1,8 @@
+import TopPage from "./components/pages/topPage";
 import "./App.css";
 
 function App() {
-  return (
-    <div>
-      <h1>こんにちは</h1>
-    </div>
-  );
+  return <TopPage />;
 }
 
 export default App;
