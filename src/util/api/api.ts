@@ -1,9 +1,12 @@
 import axios from "axios";
-import { resasApiBaseEndpoint } from "./define";
+import type { PrefectureType } from "./types";
+import { resasApiBaseEndpoint } from "../define";
 
-const getPrefectures = async () => {
+const getPrefectures = async (): Promise<PrefectureType[]> => {
   const data = await getData(generateUrl("api/v1/prefectures"));
-  console.log(data);
+  console.log("api/v1/prefectures"); // 実行時のログとして出力
+  console.log(data); // データをログとして出力
+  return data.result;
 };
 
 const getPopulation = async (prefCodes: string[]) => {
@@ -14,7 +17,8 @@ const getPopulation = async (prefCodes: string[]) => {
         `prefCode=${prefCode}&cityCode=-`,
       ),
     );
-    console.log(data);
+    console.log("api/v1/population/composition/perYear"); // 実行時のログとして出力
+    console.log(data); // データをログとして出力
   }
 };
 
