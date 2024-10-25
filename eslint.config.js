@@ -31,7 +31,8 @@ export default [
     },
     rules: {
       'react/react-in-jsx-scope': 'off',
-      'react/no-unknown-property': ['error', { ignore: ['css'] }]
+      'react/no-unknown-property': ['error', { ignore: ['css'] }],
+      '@typescript-eslint/consistent-type-imports': 'error'
     }
   },
   pluginJs.configs.recommended,
