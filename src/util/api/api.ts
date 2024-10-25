@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { PrefectureType } from "./types";
-import { resasApiBaseEndpoint } from "../define";
+import { resasApiBaseEndpoint } from "./define";
 
 const getPrefectures = async (): Promise<PrefectureType[]> => {
   const data = await getData(generateUrl("api/v1/prefectures"));
