@@ -5,7 +5,7 @@ import Text from "../../1-atm/text";
 import { containerStyle, checkboxStyle } from "./styles";
 import { getPrefectures } from "../../../util/api/api";
 import type { PrefectureType } from "../../../util/api/types";
-import { HandlePrefectureCodes } from "../../5-pg/topPg/types";
+import type { HandlePrefectureCodes } from "../../5-pg/topPg/types";
 
 const FormPrefecture = ({
   handlePrefectureCodes,
