@@ -12,7 +12,9 @@ const FormPrefecture = ({
 }: {
   handlePrefectureCodes: HandlePrefectureCodes;
 }) => {
-  const { data } = useQuery("Prefectures", getPrefectures, { staleTime: Infinity });
+  const { data } = useQuery("Prefectures", getPrefectures, {
+    staleTime: Infinity,
+  });
   return (
     <div css={containerStyle}>
       {data &&
