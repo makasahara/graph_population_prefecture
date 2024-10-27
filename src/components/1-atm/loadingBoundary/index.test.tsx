@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 import { lazy } from "react";
 import type { ComponentType } from "react";
 import LoadingBoundary from "./index";
@@ -14,7 +14,6 @@ const LazyComponent = lazy<ComponentType>(() => {
 });
 
 describe("LoadingBoundary", () => {
-
   beforeAll(() => {
     jest.useFakeTimers();
   });
@@ -27,7 +26,7 @@ describe("LoadingBoundary", () => {
     render(
       <LoadingBoundary>
         <LazyComponent />
-      </LoadingBoundary>
+      </LoadingBoundary>,
     );
 
     expect(screen.getByText(loadingText)).toBeInTheDocument();

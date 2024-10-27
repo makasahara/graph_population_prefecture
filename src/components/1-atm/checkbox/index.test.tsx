@@ -1,21 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 import Checkbox from "./index";
 import Text from "../text";
 
-
-
 describe("Checkbox", () => {
-
   const labelText = "北海道";
   const mockFn = jest.fn();
   const mockCheckboxItem = {
     id: "prefecture-1",
     name: "prefecture",
     value: "1",
-    onChange: mockFn
-  }
+    onChange: mockFn,
+  };
   const user = userEvent.setup();
 
   beforeEach(() => {
@@ -26,10 +23,10 @@ describe("Checkbox", () => {
     render(
       <Checkbox {...mockCheckboxItem}>
         <Text>{labelText}</Text>
-      </Checkbox>
+      </Checkbox>,
     );
     expect(screen.getByText(labelText)).toBeInTheDocument();
-    const checkbox = screen.getByRole('checkbox', { name: labelText });
+    const checkbox = screen.getByRole("checkbox", { name: labelText });
     expect(checkbox).not.toBeChecked();
   });
 
@@ -37,9 +34,9 @@ describe("Checkbox", () => {
     render(
       <Checkbox {...mockCheckboxItem}>
         <Text>{labelText}</Text>
-      </Checkbox>
+      </Checkbox>,
     );
-    const checkbox = screen.getByRole('checkbox', { name: labelText });
+    const checkbox = screen.getByRole("checkbox", { name: labelText });
     await user.click(checkbox);
     expect(checkbox).toBeChecked();
     expect(mockFn).toHaveBeenCalledTimes(1);
@@ -49,13 +46,12 @@ describe("Checkbox", () => {
     render(
       <Checkbox {...mockCheckboxItem}>
         <Text>{labelText}</Text>
-      </Checkbox>
+      </Checkbox>,
     );
-    const checkbox = screen.getByRole('checkbox', { name: labelText });
+    const checkbox = screen.getByRole("checkbox", { name: labelText });
     await user.click(checkbox);
     await user.click(checkbox);
     expect(checkbox).not.toBeChecked();
     expect(mockFn).toHaveBeenCalledTimes(2);
   });
-
 });
