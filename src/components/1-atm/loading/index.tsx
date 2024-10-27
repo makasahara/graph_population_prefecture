@@ -1,5 +1,9 @@
+import Text from "../text";
+
+export const loadingText = "Now Loading...";
+
 const Loading = () => {
-  return <div>Now Loading...</div>;
+  return <Text>{loadingText}</Text>;
 };
 
 export default Loading;

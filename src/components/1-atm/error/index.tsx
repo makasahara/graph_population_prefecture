@@ -1,5 +1,9 @@
+import Text from "../text";
+
+export const errorText = "エラーが発生しました";
+
 const Error = () => {
-  return <div>エラーが発生しました</div>;
+  return <Text>{errorText}</Text>;
 };
 
 export default Error;
