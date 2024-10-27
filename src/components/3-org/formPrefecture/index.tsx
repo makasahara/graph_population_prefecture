@@ -1,10 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { useQuery } from "react-query";
-import Checkbox from "../../1-atm/checkbox";
-import Text from "../../1-atm/text";
-import { containerStyle, checkboxStyle } from "./styles";
+import Checkboxes from "../../2-mol/checkboxes";
 import { getPrefectures } from "../../../util/api/api";
-import type { PrefectureType } from "../../../util/api/types";
+import { containerStyle, customCheckboxContainerStyle } from "./styles";
 import type { HandlePrefectureCodes } from "../../5-pg/topPg/types";
 
 const FormPrefecture = ({
@@ -15,21 +13,21 @@ const FormPrefecture = ({
   const { data } = useQuery("Prefectures", getPrefectures, {
     staleTime: Infinity,
   });
+
   return (
     <div css={containerStyle}>
-      {data &&
-        data.map((prefecture: PrefectureType) => (
-          <Checkbox
-            key={String(prefecture.prefCode)}
-            name="prefecture"
-            id={`prefecture-${prefecture.prefCode}`}
-            value={String(prefecture.prefCode)}
-            style={checkboxStyle}
-            onChange={handlePrefectureCodes}
-          >
-            <Text>{prefecture.prefName}</Text>
-          </Checkbox>
-        ))}
+      {data && (
+        <Checkboxes
+          data={data.map((item) => ({
+            id: item.prefCode,
+            value: String(item.prefCode),
+            label: item.prefName,
+          }))}
+          name="prefecture"
+          customCheckboxContainerStyle={customCheckboxContainerStyle}
+          onChange={handlePrefectureCodes}
+        />
+      )}
     </div>
   );
 };

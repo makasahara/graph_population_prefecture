@@ -1,28 +1,25 @@
 /** @jsxImportSource @emotion/react */
-import { v4 as uuid } from "uuid";
 import type { SerializedStyles } from "@emotion/react";
 import { containerStyle } from "./styles";
 import type { OnChange, Children } from "../../../util/types";
-
-const uniqueKey = uuid();
 
 const Checkbox = ({
   id,
   name,
   value,
-  style,
+  customContainerStyle,
   children,
   onChange,
 }: {
   id: string;
   name: string;
   value: string;
-  style: SerializedStyles;
+  customContainerStyle?: SerializedStyles;
   children: Children;
   onChange: OnChange;
 }) => {
   return (
-    <div css={[containerStyle, style]} key={uniqueKey}>
+    <div css={[containerStyle, customContainerStyle]} key={id}>
       <input
         type="checkbox"
         id={id}
