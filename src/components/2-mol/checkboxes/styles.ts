@@ -8,8 +8,4 @@ const containerStyle = css({
   width: "100%",
 });
 
-const customCheckboxContainerStyle = css({
-  width: "100px",
-});
-
-export { containerStyle, customCheckboxContainerStyle };
+export { containerStyle };
