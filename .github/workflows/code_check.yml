@@ -29,6 +29,5 @@ jobs:
     - name: Run Prettier
       run: npm run format-check
 
-    # TODO: テストを追加する
-    # - name: Run tests
-    # run: npm test
+    - name: Run tests
+      run: npm test
