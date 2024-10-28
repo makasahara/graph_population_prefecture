@@ -5,6 +5,8 @@ import Checkbox from "./index";
 import Text from "../text";
 
 describe("Checkbox", () => {
+  const user = userEvent.setup();
+
   const labelText = "北海道";
   const mockFn = jest.fn();
   const mockCheckboxItem = {
@@ -13,29 +15,28 @@ describe("Checkbox", () => {
     value: "1",
     onChange: mockFn,
   };
-  const user = userEvent.setup();
+
+  const renderCheckbox = () => {
+    return render(
+      <Checkbox {...mockCheckboxItem}>
+        <Text>{labelText}</Text>
+      </Checkbox>,
+    );
+  };
 
   beforeEach(() => {
     mockFn.mockClear();
   });
 
   it("チェックボックスが正しく表示されること", () => {
-    render(
-      <Checkbox {...mockCheckboxItem}>
-        <Text>{labelText}</Text>
-      </Checkbox>,
-    );
+    renderCheckbox();
     expect(screen.getByText(labelText)).toBeInTheDocument();
     const checkbox = screen.getByRole("checkbox", { name: labelText });
     expect(checkbox).not.toBeChecked();
   });
 
   it("チェックボックスをクリックするとチェックがされ、関数が呼ばれること", async () => {
-    render(
-      <Checkbox {...mockCheckboxItem}>
-        <Text>{labelText}</Text>
-      </Checkbox>,
-    );
+    renderCheckbox();
     const checkbox = screen.getByRole("checkbox", { name: labelText });
     await user.click(checkbox);
     expect(checkbox).toBeChecked();
@@ -43,11 +44,7 @@ describe("Checkbox", () => {
   });
 
   it("チェックボックスを2回クリックするとチェックがされ、関数が2回呼ばれること", async () => {
-    render(
-      <Checkbox {...mockCheckboxItem}>
-        <Text>{labelText}</Text>
-      </Checkbox>,
-    );
+    renderCheckbox();
     const checkbox = screen.getByRole("checkbox", { name: labelText });
     await user.click(checkbox);
     await user.click(checkbox);

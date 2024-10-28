@@ -5,7 +5,7 @@ import Text from "./index";
 const text = "テキストメッセージ";
 
 describe("Text", () => {
-  it("テキストが表示される", async () => {
+  it("テキストが表示される", () => {
     render(<Text>{text}</Text>);
     expect(screen.getByText(text)).toBeInTheDocument();
   });

@@ -17,18 +17,21 @@ describe("FormPrefecture", () => {
   const mockFn = jest.fn();
   const user = userEvent.setup();
 
+  const renderFormPrefecture = () => {
+    return render(
+      <QueryClientProvider client={queryClient}>
+        <FormPrefecture handlePrefectureCodes={mockFn} />
+      </QueryClientProvider>,
+    );
+  };
+
   beforeEach(() => {
     (getPrefectures as jest.Mock).mockResolvedValue(mockPrefectures);
     mockFn.mockClear();
   });
 
   it("「都道府県一覧」データを元にチェックボックスが表示されること", async () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <FormPrefecture handlePrefectureCodes={mockFn} />
-      </QueryClientProvider>,
-    );
-
+    renderFormPrefecture();
     await waitFor(() => {
       mockPrefectures.forEach((prefecture) => {
         expect(screen.getByLabelText(prefecture.prefName)).toBeInTheDocument();
@@ -41,12 +44,7 @@ describe("FormPrefecture", () => {
   });
 
   it("チェックボックスをクリックするとチェックがされ、関数が呼ばれること", async () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <FormPrefecture handlePrefectureCodes={mockFn} />
-      </QueryClientProvider>,
-    );
-
+    renderFormPrefecture();
     const checkbox = screen.getByRole("checkbox", {
       name: mockPrefectures[0].prefName,
     });
@@ -56,12 +54,7 @@ describe("FormPrefecture", () => {
   });
 
   it("チェックボックスを2回クリックするとチェックが外れ、関数が呼ばれること", async () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <FormPrefecture handlePrefectureCodes={mockFn} />
-      </QueryClientProvider>,
-    );
-
+    renderFormPrefecture();
     const checkbox = screen.getByRole("checkbox", {
       name: mockPrefectures[0].prefName,
     });
