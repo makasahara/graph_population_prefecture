@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import Heading from "../../1-atm/heading";
 import LoadingBoundary from "../../1-atm/loadingBoundary";
 import ErrorCatcher from "../../1-atm/errorCatcher";
 import FormPrefecture from "../../3-org/formPrefecture";
@@ -19,6 +20,7 @@ const TopTmpl = ({
 }) => {
   return (
     <>
+      <Heading>都道府県別の人口推移グラフ</Heading>
       <LoadingBoundary customContainerStyle={loadingContainerStyle}>
         <ErrorCatcher customContainerStyle={errorContainerStyle}>
           <div css={formContainerStyle}>
