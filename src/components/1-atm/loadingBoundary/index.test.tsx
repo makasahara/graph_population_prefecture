@@ -9,11 +9,19 @@ const LazyComponent = lazy<ComponentType>(() => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({ default: () => <div>Loaded Component</div> });
-    }, 1000);
+    }, 100);
   });
 });
 
 describe("LoadingBoundary", () => {
+  const renderLoadingBoundary = () => {
+    return render(
+      <LoadingBoundary>
+        <LazyComponent />
+      </LoadingBoundary>,
+    );
+  };
+
   beforeAll(() => {
     jest.useFakeTimers();
   });
@@ -23,16 +31,14 @@ describe("LoadingBoundary", () => {
   });
 
   it("読み込み中にフォールバックUIを表示する", async () => {
-    render(
-      <LoadingBoundary>
-        <LazyComponent />
-      </LoadingBoundary>,
-    );
-
+    renderLoadingBoundary();
     expect(screen.getByText(loadingText)).toBeInTheDocument();
+  });
 
-    jest.advanceTimersByTime(1000);
-
-    await screen.findByText(/Loaded Component/i);
+  it("読み込みが完了したら、コンポーネントを表示する", async () => {
+    renderLoadingBoundary();
+    expect(screen.getByText(loadingText)).toBeInTheDocument();
+    jest.advanceTimersByTime(100);
+    await screen.findByText("Loaded Component");
   });
 });

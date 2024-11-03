@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TopTmpl from "../../4-tmpl/topTmpl";
+import { changePrefectureCode } from "./functions";
 import type { HandlePrefectureCodes } from "./types";
 
 const TopPg = () => {
@@ -7,13 +8,9 @@ const TopPg = () => {
 
   const handlePrefectureCodes: HandlePrefectureCodes = (event) => {
     const code = event.target.value;
-    setPrefectureCodes((prev) => {
-      if (prev.includes(code)) {
-        return prev.filter((p) => p !== code);
-      }
-      return [...prev, code];
-    });
+    setPrefectureCodes((prev) => changePrefectureCode(prev, code));
   };
+
   return (
     <TopTmpl
       handlePrefectureCodes={handlePrefectureCodes}

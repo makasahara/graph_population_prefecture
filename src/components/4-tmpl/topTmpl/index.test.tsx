@@ -1,52 +1,45 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import TopTmpl from "./index";
-import type { Children } from "../../../util/types";
 
-const formPrefectureMockText = "FormPrefecture";
-const graphPrefectureMockText = "GraphPrefecture";
-
-jest.mock("../../1-atm/loadingBoundary", () => {
-  const MockLoadingBoundary = ({ children }: { children: Children }) => (
-    <div>{children}</div>
-  );
-  MockLoadingBoundary.displayName = "MockLoadingBoundary";
-  return MockLoadingBoundary;
-});
-
-jest.mock("../../1-atm/errorCatcher", () => {
-  const MockErrorCatcher = ({ children }: { children: Children }) => (
-    <div>{children}</div>
-  );
-  MockErrorCatcher.displayName = "MockErrorCatcher";
-  return MockErrorCatcher;
-});
+const formPrefectureMockText = "FormPrefecture Component";
+const graphPrefectureMockText = "GraphPrefecture Component";
 
 jest.mock("../../3-org/formPrefecture", () => {
-  const MockFormPrefecture = () => <div>{formPrefectureMockText}</div>;
-  MockFormPrefecture.displayName = "MockFormPrefecture";
-  return MockFormPrefecture;
+  return jest.fn(() => <div>{formPrefectureMockText}</div>);
 });
 
 jest.mock("../../3-org/graphPrefecture", () => {
-  const MockGraphPrefecture = () => <div>{graphPrefectureMockText}</div>;
-  MockGraphPrefecture.displayName = "MockGraphPrefecture";
-  return MockGraphPrefecture;
+  return jest.fn(() => <div>{graphPrefectureMockText}</div>);
 });
 
 describe("TopTmpl", () => {
   const mockFn = jest.fn();
-  it("FormPrefectureとGraphPrefectureが表示されること", () => {
-    const prefectureCodes = ["1", "2"];
 
-    render(
+  const renderTopTmpl = (prefectureCodes: string[]) => {
+    return render(
       <TopTmpl
         handlePrefectureCodes={mockFn}
         prefectureCodes={prefectureCodes}
       />,
     );
+  };
+
+  it("prefectureCodesに値が入っているときには、FormPrefectureとGraphPrefectureが表示されること", () => {
+    const prefectureCodes = ["1", "2"];
+
+    renderTopTmpl(prefectureCodes);
 
     expect(screen.getByText(formPrefectureMockText)).toBeInTheDocument();
     expect(screen.getByText(graphPrefectureMockText)).toBeInTheDocument();
+  });
+
+  it("prefectureCodesに値が入っていないときには、FormPrefectureのみが表示されること", () => {
+    const prefectureCodes: string[] = [];
+
+    renderTopTmpl(prefectureCodes);
+
+    expect(screen.getByText(formPrefectureMockText)).toBeInTheDocument();
+    expect(screen.queryByText(graphPrefectureMockText)).not.toBeInTheDocument();
   });
 });

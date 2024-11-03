@@ -31,7 +31,7 @@ describe("Checkboxes", () => {
     });
   });
 
-  it("チェックボックスをクリックするとチェックがされ、関数が呼ばれること", async () => {
+  it("チェックボックスをクリックするとチェックされ、関数が呼ばれること", async () => {
     render(
       <Checkboxes
         data={mockCheckboxData}

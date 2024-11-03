@@ -1,15 +1,14 @@
 import { css } from "@emotion/react";
+import { mediaQuerySp } from "../../../util/defineCss";
 
-const containerStyle = css({
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  gap: "10px",
-  width: "100%",
+const customContainerStyle = css({
+  width: "96%",
+  height: "300px",
+  margin: "0 auto",
+  [mediaQuerySp]: {
+    width: "100%",
+    height: "200px",
+  },
 });
 
-const checkboxStyle = css({
-  width: "100px",
-});
-
-export { containerStyle, checkboxStyle };
+export { customContainerStyle };
