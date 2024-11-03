@@ -9,13 +9,12 @@ import {
   loadingContainerStyle,
   errorContainerStyle,
 } from "./styles";
-import type { HandlePrefectureCodes } from "../../5-pg/topPg/types";
 
 const TopTmpl = ({
   handlePrefectureCodes,
   prefectureCodes,
 }: {
-  handlePrefectureCodes: HandlePrefectureCodes;
+  handlePrefectureCodes: React.ChangeEventHandler<HTMLInputElement>;
   prefectureCodes: string[];
 }) => {
   return (

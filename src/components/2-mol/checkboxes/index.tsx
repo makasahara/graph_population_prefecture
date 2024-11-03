@@ -3,7 +3,6 @@ import type { SerializedStyles } from "@emotion/react";
 import Checkbox from "../../1-atm/checkbox";
 import Text from "../../1-atm/text";
 import { containerStyle } from "./styles";
-import type { OnChange } from "../../../util/types";
 
 type Item = {
   id: number;
@@ -22,7 +21,7 @@ const Checkboxes = ({
   data: Data;
   name: string;
   customCheckboxContainerStyle?: SerializedStyles;
-  onChange: OnChange;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 }) => {
   return (
     <div css={containerStyle}>

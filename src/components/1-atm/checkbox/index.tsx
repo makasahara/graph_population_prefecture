@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import type { SerializedStyles } from "@emotion/react";
 import { containerStyle } from "./styles";
-import type { OnChange, Children } from "../../../util/types";
 
 const Checkbox = ({
   id,
@@ -15,8 +14,8 @@ const Checkbox = ({
   name: string;
   value: string;
   customContainerStyle?: SerializedStyles;
-  children: Children;
-  onChange: OnChange;
+  children: React.ReactNode;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 }) => {
   return (
     <div css={[containerStyle, customContainerStyle]} key={id}>
