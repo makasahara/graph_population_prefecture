@@ -2,13 +2,12 @@
 import { Suspense } from "react";
 import Loading from "../loading";
 import type { SerializedStyles } from "@emotion/react";
-import type { Children } from "../../../util/types";
 
 const LoadingBoundary = ({
   children,
   customContainerStyle,
 }: {
-  children: Children;
+  children: React.ReactNode;
   customContainerStyle?: SerializedStyles;
 }) => {
   return (

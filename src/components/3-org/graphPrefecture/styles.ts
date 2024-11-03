@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { mediaQuerySp } from "../../../util/defineCss";
 
-const customContainerStyle = css({
+const containerStyleGraph = css({
   width: "96%",
   height: "300px",
   margin: "0 auto",
@@ -11,4 +11,11 @@ const customContainerStyle = css({
   },
 });
 
-export { customContainerStyle };
+const containerStyleSelectBox = css({
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  margin: "20px 0",
+});
+
+export { containerStyleGraph, containerStyleSelectBox };

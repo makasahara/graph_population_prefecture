@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ErrorCatcher from "./index";
 import { errorText } from "../error";
-import type { Children } from "../../../util/types";
 const ErrorComponent = () => {
   throw new Error("Error Component");
 };
@@ -21,7 +20,7 @@ describe("ErrorCatcher", () => {
     console.error = originalConsoleError;
   });
 
-  const renderErrorCatcher = (children: Children) => {
+  const renderErrorCatcher = (children: React.ReactNode) => {
     return render(<ErrorCatcher>{children}</ErrorCatcher>);
   };
 

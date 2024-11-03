@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { style } from "./styles";
-import type { Children } from "../../../util/types";
 
-const Text = ({ children }: { children: Children }) => {
+const Text = ({ children }: { children: React.ReactNode }) => {
   return <p css={style}>{children}</p>;
 };
 

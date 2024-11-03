@@ -2,27 +2,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { css } from "@emotion/react";
 import Graph from "./index";
-import type { Children } from "../../../util/types";
-
-const rechartsWidth = 800;
-const rechartsHeight = 300;
-
-// ResponsiveContainerをモックすることで「描画サイズ0」の警告を回避
-// width、heightを直接指定しないと、rechartsから警告が出るため
-jest.mock("recharts", () => {
-  const OriginalModule = jest.requireActual("recharts");
-  return {
-    ...OriginalModule,
-    ResponsiveContainer: ({ children }: { children: Children }) => (
-      <OriginalModule.ResponsiveContainer
-        width={rechartsWidth}
-        height={rechartsHeight}
-      >
-        {children}
-      </OriginalModule.ResponsiveContainer>
-    ),
-  };
-});
+import { restoreConsoleWarn } from "../../../setupTests/setupGraphTest";
 
 const customContainerStyle = css({
   width: "300px",
@@ -48,31 +28,8 @@ describe("Graph", () => {
     );
   };
 
-  const originalWarn = console.warn;
-
-  beforeAll(() => {
-    // ResizeObserverをモックすることで、rechartsのエラーを回避
-    global.ResizeObserver = class {
-      observe() {}
-      unobserve() {}
-      disconnect() {}
-    };
-
-    // console.warnをモックすることで、「ResponsiveContainerのwidth、heightの指定がレスポンシブに対応していない」警告を回避
-    console.warn = (...args) => {
-      if (
-        args[0].includes(
-          `The width(${rechartsWidth}) and height(${rechartsHeight}) are both fixed numbers`,
-        )
-      ) {
-        return;
-      }
-      originalWarn(...args);
-    };
-  });
-
   afterAll(() => {
-    console.warn = originalWarn;
+    restoreConsoleWarn();
   });
 
   it("グラフが描画されることを確認する", async () => {
