@@ -14,7 +14,6 @@ jest.mock("../../3-org/graphPrefecture", () => {
 });
 
 describe("TopTmpl", () => {
-
   const mockFn = jest.fn();
 
   const renderTopTmpl = (prefectureCodes: string[]) => {
@@ -43,5 +42,4 @@ describe("TopTmpl", () => {
     expect(screen.getByText(formPrefectureMockText)).toBeInTheDocument();
     expect(screen.queryByText(graphPrefectureMockText)).not.toBeInTheDocument();
   });
-
 });
