@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import type { SerializedStyles } from "@emotion/react";
+import { selectBoxStyle } from "./style";
 
 const SelectBox = ({
   id,
@@ -20,15 +21,21 @@ const SelectBox = ({
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }) => {
   return (
-    <div css={customContainerStyle} key={id}>
-      <select id={id} name={name} value={selectedValue} onChange={onChange}>
+    <label css={[selectBoxStyle, customContainerStyle]}>
+      <select
+        id={id}
+        name={name}
+        value={selectedValue}
+        onChange={onChange}
+        key={id}
+      >
         {values.map((value) => (
           <option value={value.value} key={value.value}>
             {value.label}
           </option>
         ))}
       </select>
-    </div>
+    </label>
   );
 };
 

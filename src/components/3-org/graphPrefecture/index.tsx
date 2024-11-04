@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import Graph from "../../1-atm/graph";
@@ -66,14 +67,15 @@ const GraphPrefecture = ({
     dataForGraph.length > 0 &&
     !isPopulationFetching && (
       <>
-        <SelectBox
-          id="category"
-          name="category"
-          values={selectBoxValues}
-          selectedValue={selectedCategory}
-          customContainerStyle={containerStyleSelectBox}
-          onChange={handleChangeCategory}
-        />
+        <div css={containerStyleSelectBox}>
+          <SelectBox
+            id="category"
+            name="category"
+            values={selectBoxValues}
+            selectedValue={selectedCategory}
+            onChange={handleChangeCategory}
+          />
+        </div>
         <Graph
           data={dataForGraph}
           xAxisDataKey="year"

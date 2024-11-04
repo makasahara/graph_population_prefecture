@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import Heading from "../../1-atm/heading";
 import LoadingBoundary from "../../1-atm/loadingBoundary";
 import ErrorCatcher from "../../1-atm/errorCatcher";
 import NetworkChecker from "../../1-atm/networkChecker";
+import TitleArea from "../../3-org/TitleArea";
 import FormPrefecture from "../../3-org/formPrefecture";
 import GraphPrefecture from "../../3-org/graphPrefecture";
 import {
@@ -21,7 +21,7 @@ const TopTmpl = ({
 }) => {
   return (
     <>
-      <Heading>都道府県別の人口推移グラフ</Heading>
+      <TitleArea>都道府県別の人口推移グラフ</TitleArea>
       <NetworkChecker>
         <LoadingBoundary customContainerStyle={loadingContainerStyle}>
           <ErrorCatcher customContainerStyle={errorContainerStyle}>
