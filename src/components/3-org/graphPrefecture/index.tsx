@@ -79,12 +79,14 @@ const GraphPrefecture = ({
         <Graph
           data={dataForGraph}
           xAxisDataKey="year"
+          xAxisLabel="年度"
           yAxisDataKey="maxValue"
+          yAxisLabel="人口数"
           customContainerStyle={containerStyleGraph}
           margin={{
-            top: 10,
-            right: 10,
-            left: 30,
+            top: 40,
+            right: 60,
+            left: 40,
             bottom: 10,
           }}
           colors={prefectureColors}
