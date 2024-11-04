@@ -22,7 +22,9 @@ describe("Graph", () => {
       <Graph
         data={mockData}
         xAxisDataKey="year"
+        xAxisLabel="年度"
         yAxisDataKey="maxValue"
+        yAxisLabel="人口数"
         customContainerStyle={customContainerStyle}
       />,
     );

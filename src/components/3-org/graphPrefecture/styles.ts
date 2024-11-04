@@ -3,7 +3,7 @@ import { mediaQuerySp } from "../../../util/defineCss";
 
 const containerStyleGraph = css({
   width: "96%",
-  height: "360px",
+  height: "320px",
   margin: "0 auto",
   [mediaQuerySp]: {
     width: "100%",
