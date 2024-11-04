@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import type { SerializedStyles } from "@emotion/react";
-import { containerStyle } from "./styles";
+import { checkboxStyle, labelStyle, handleKeyDown } from "./styles";
 
 const Checkbox = ({
   id,
@@ -18,16 +18,18 @@ const Checkbox = ({
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }) => {
   return (
-    <div css={[containerStyle, customContainerStyle]} key={id}>
+    <label css={[labelStyle, customContainerStyle]} key={id}>
       <input
         type="checkbox"
         id={id}
         name={name}
         value={value}
         onChange={onChange}
+        css={checkboxStyle}
+        onKeyDown={handleKeyDown}
       />
-      <label htmlFor={id}>{children}</label>
-    </div>
+      {children}
+    </label>
   );
 };
 
